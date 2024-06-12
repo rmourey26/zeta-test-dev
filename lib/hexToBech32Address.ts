@@ -6,7 +6,7 @@ export const hexToBech32Address = (address: string, prefix: string): string => {
   return bech32.encode(prefix, words)
 }
 
-export const bech32ToHexAddress = (address: string): string => {
+export const convertToHexAddress = (address: string): string => {
   const decoded = bech32.decode(address)
   return "0x" + Buffer.from(bech32.fromWords(decoded.words)).toString("hex")
 }

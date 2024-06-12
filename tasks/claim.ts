@@ -1,6 +1,6 @@
 import { task } from "hardhat/config";
 import { HardhatRuntimeEnvironment } from "hardhat/types";
-import { convertToHexAddress } from "../lib/convertToHexAddress";
+import { convertToHexAddress } from "../lib/hexToBech32Address"
 
 const main = async (args: any, hre: HardhatRuntimeEnvironment) => {
   const [signer] = await hre.ethers.getSigners();

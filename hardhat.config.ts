@@ -1,5 +1,10 @@
 import "./tasks/interact";
 import "./tasks/deploy";
+import "./tasks/address";
+import "./tasks/stake";
+import "./tasks/unstake";
+import "./tasks/beneficiary";
+import "./tasks/claim";
 import "@nomicfoundation/hardhat-toolbox";
 import "@nomicfoundation/hardhat-foundry";
 import "@zetachain/toolkit/tasks";
@@ -11,7 +16,22 @@ const config: HardhatUserConfig = {
   networks: {
     ...getHardhatConfigNetworks(),
   },
-  solidity: "0.8.7",
+  solidity: {
+    compilers:[
+      {
+        version: "0.5.7", 
+      },
+      {
+        version: "0.8.18",
+      },
+      {
+        version: "0.8.7",
+      },
+      {
+        version: "0.8.4",
+      },
+    ],
+  },
 };
 
 export default config;

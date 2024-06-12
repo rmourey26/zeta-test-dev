@@ -6,14 +6,22 @@ import ERC20Custody from "@zetachain/protocol-contracts/abi/evm/ERC20Custody.sol
 import { prepareData } from "@zetachain/toolkit/client";
 import { utils, ethers } from "ethers";
 import ERC20 from "@openzeppelin/contracts/build/contracts/ERC20.json";
+import bech32 from "bech32";
 
 const main = async (args: any, hre: HardhatRuntimeEnvironment) => {
   const [signer] = await hre.ethers.getSigners();
-
+  let recipient;
+  try {
+    if (bech32.decode(args.recipient)) {
+      recipient = utils.solidityPack(["bytes"], [utils.toUtf8Bytes(args.recipient)]);
+    }
+  } catch (e) {
+    recipient = args.recipient;
+  }
   const data = prepareData(
     args.contract,
-    [],
-    []
+    ["address", "bytes"],
+    [args.targetToken, recipient]
   );
 
   let tx;
